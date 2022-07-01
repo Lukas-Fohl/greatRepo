@@ -1,0 +1,12 @@
+todo:
+    add components:
+[ ]     -player   --> test main system
+[ ]     -gamedesigne
+[ ]     -sprites
+[ ]     -raycasting
+[ ]     -output
+
+exlude scene-manger --> 
+player = cam
+
+    fix components:
