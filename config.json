@@ -1,4 +1,5 @@
 {
 	"frame_rate":30,
-	"ray_cast_amount":100
+	"ray_cast_amount":100,
+	"game_size":[108,192]
 }
