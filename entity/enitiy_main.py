@@ -2,7 +2,7 @@ from logic import collision as collision_import
 from input_manager import input_manager as input_manager_import
 from assets import sprite as sprite_import
 
-class entity_main:
+class entity_main_class:
 
     position = [0,0]
     rotation = 0 #0 = up --> 90 = 90° right etc.

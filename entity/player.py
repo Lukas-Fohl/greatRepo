@@ -3,7 +3,7 @@ from entity import enitiy_main as entity_main_import
 
 class player():
 
-    entity = entity_main_import.entity_main
+    entity = entity_main_import.entity_main_class
 
     def __init__(self):
         return
