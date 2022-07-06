@@ -16,7 +16,7 @@ def main():
 
 def looping():
     #tick: --> delta time
-    #-->update current map
+    output_import.output_manager(False)
     main_logic_import.update_fixed()
     looping()
     return

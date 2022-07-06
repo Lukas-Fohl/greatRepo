@@ -23,6 +23,7 @@ class entity_main_class:
         #get
         #check collision
         #set position
+        #-->update current map
         return  
 
     def attack():
