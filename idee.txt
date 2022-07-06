@@ -5,8 +5,11 @@ todo:
 [ ]     -sprites
 [ ]     -raycasting
 [ ]     -output
+[ ]     -collision
 
-exlude scene-manger --> 
-player = cam
+    PoC:
+[ ]     -raycasting 
+[ ]     -delat time --> fix time 
 
-    fix components:
+    fix:
+[ ]     -player = cam --> coigate 

@@ -10,3 +10,9 @@ def multi_collision(entity_list:  entity_main_import = {}):
 
 def all_check_collision():
     return False
+
+"""
+example 
+ent_listing = [main_logic_import.main_player.entity, main_logic_import.main_player.entity]
+collision_import.multi_collision(ent_listing)
+"""

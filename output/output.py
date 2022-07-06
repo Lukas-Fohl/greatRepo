@@ -1,3 +1,4 @@
+from distutils.command.config import config
 from designe import map as map_import
 from output import ray_cast as ray_cast_import
 from scene import scenemanager as scene_manager_import
@@ -13,13 +14,17 @@ map_chosen = ""
 cam_eq_player = True
 frame_rate = 30
 
-def output_manager(custom):
+def set_up(custom):
     get_json_config()
     frame_rate_set()
     if (custom == False):
         initi()
     global game_map_now
     game_map_now = map_import.translate_map(scene_chosen,map_chosen)
+    return
+
+def output_manager(custom):
+    #run game
     return
 
 def initi():
@@ -33,9 +38,11 @@ def initi():
 
 def get_json_config():
     global config_path 
+    config_path = " "
     for x in range(len(path_contain.split("\\"))-1):
         config_path += path_contain.split("\\")[x] + "\\"
     config_path += "config.json"
+    config_path = config_path[1:]
     return
 
 def frame_rate_set():
