@@ -11,6 +11,7 @@ def main():
     sys.setrecursionlimit(6**10)
     main_logic_import.main_logic()
     output_import.set_up(False)
+    print("[✅] \t\t\t setup")
     looping()
     return
 
@@ -35,5 +36,4 @@ what has to be done:
 ////////////////////////
 this file is used to change the behavior of the rendering, logic and the over all behavior of the programm not for the logic of the game it self
 ////////////////////////
-
 """
