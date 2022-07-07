@@ -1,3 +1,4 @@
+from math import degrees
 from designe import map as map_import
 from output import ray_cast as ray_cast_import
 from scene import scenemanager as scene_manager_import
@@ -15,6 +16,8 @@ cam_eq_player = True
 frame_rate = 30
 ray_amount = 100
 fov = 90
+render_distacne = 10
+view = []
 
 def set_up(custom):
     get_json_config()
@@ -26,10 +29,12 @@ def set_up(custom):
     return
 
 def output_manager(custom):
-    #
-    ray_cast_import.test(map_import.get_current_map())
-    #
+    degrees_per_ray = fov/ray_amount
+    for turning in range(ray_amount):
+        ray_cast_import.raycasting(render_distacne,(turning*degrees_per_ray),map_import.get_current_map())
     #run game
+    print("[✅] \t\t\t frame")
+    exit()
     return
 
 def initi():
@@ -55,8 +60,10 @@ def values_set():
         global frame_rate
         global ray_amount
         global fov
+        global render_distacne
         data_in = json.load(json_file)
         frame_rate = data_in['frame_rate']
         ray_amount = data_in['ray_cast_amount']
         fov = data_in['fov']
+        render_distacne = data_in['render_distacne']
     return
