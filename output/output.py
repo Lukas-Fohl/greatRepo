@@ -2,6 +2,7 @@ from math import degrees
 from designe import map as map_import
 from output import ray_cast as ray_cast_import
 from scene import scenemanager as scene_manager_import
+import platform
 import json
 import os 
 
@@ -49,8 +50,11 @@ def initi():
 def get_json_config():
     global config_path 
     config_path = " "
-    for x in range(len(path_contain.split("\\"))-1):
-        config_path += path_contain.split("\\")[x] + "\\"
+    split_str = "/"
+    if platform.system() == 'Windows':
+        split_str = "\\"
+    for x in range(len(path_contain.split(split_str))-1):
+        config_path += path_contain.split(split_str)[x] + split_str
     config_path += "config.json"
     config_path = config_path[1:]
     return
