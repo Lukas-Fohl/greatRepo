@@ -31,3 +31,15 @@ def get_preSet_player_position():
             x_counter += 1
         x_counter = 0
         y_counter +=1
+
+def get_current_player_position():
+    map_2d = get_current_map()
+    x_counter = 0
+    y_counter = 0
+    for y in map_2d:
+        for x in y:
+            if(x== 's'):
+                return [x_counter,y_counter]
+            x_counter += 1
+        x_counter = 0
+        y_counter +=1
