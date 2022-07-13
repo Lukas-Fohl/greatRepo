@@ -3,5 +3,5 @@
 	"ray_cast_amount":100,
 	"game_size":[108,192],
 	"fov": 110,
-	"render_distacne": 10
+	"render_distacne": 20
 }
