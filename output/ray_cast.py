@@ -1,4 +1,3 @@
-from turtle import distance
 from output import screen_renderer as screen_render_import
 from output import output as output_import
 from designe import map as map_import
@@ -57,6 +56,19 @@ def horizontal(angle_in: float,y_offset:int):
     return hiting
 
 def hit_hit_stuff(orientation: int, position: float = []):
+    match orientation:
+        case 0:
+            print()
+            #vertical +1
+        case 1:
+            print()
+            #horizontal +1
+        case 2:
+            print()
+            #vertical -1
+        case 3:
+            print()
+            #horizontal -1
     return
 
 def rad_2_deg(rad:float):
@@ -67,14 +79,16 @@ def deg_2_rad(deg:float):
 
 def orientation(angle: int):
     choice = 0
-    if angle >= 0:
+    if angle >= 0 and angle < 45:
         choice = 0
-    elif angle >= 90:
+    elif angle >=45 and angle <= 135:
         choice = 1
-    elif angle >= 180:
+    elif angle >= 135 and angle <= 225:
         choice = 2
-    elif angle >= 270:
+    elif angle >= 225 and angle <= 315:
         choice = 3
+    elif angle >=315 and angle <= 360:
+        choice = 0
     return choice
 
 def get_vertical_distance():
