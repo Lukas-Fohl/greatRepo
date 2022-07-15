@@ -31,8 +31,9 @@ def set_up(custom):
 
 def output_manager(custom):
     degrees_per_ray = fov/ray_amount
-    for turning in range(ray_amount):
-        ray_cast_import.raycasting(render_distacne,(turning*degrees_per_ray),map_import.get_current_map())
+    ray_cast_import.raycasting(render_distacne,45,map_import.get_current_map())
+    #for turning in range(ray_amount):
+        #ray_cast_import.raycasting(render_distacne,(turning*degrees_per_ray),map_import.get_current_map())
     #run game
     print("[✅] \t\t\t frame")
     exit()

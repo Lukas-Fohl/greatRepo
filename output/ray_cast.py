@@ -1,3 +1,4 @@
+from typing import final
 from output import screen_renderer as screen_render_import
 from output import output as output_import
 from designe import map as map_import
@@ -6,11 +7,17 @@ import math as math_import
 final_view: int = [0]
 cam_pos = [0,0]
 degrees_ = 0
+map_search = [[],[]]
+final_lenght = 0
+x_offset = 0
+y_offset = 0
 
 def raycasting(render_distacne_in: int,degrees_in: int,map_in: str = [[],[]]):
     #do the fun stuff
     global cam_pos
     global  degrees_ 
+    global map_search
+    map_search =  map_in
     degrees_ = degrees_in
     if output_import.cam_eq_player == True:
         cam_pos = map_import.get_current_player_position()
@@ -19,9 +26,7 @@ def raycasting(render_distacne_in: int,degrees_in: int,map_in: str = [[],[]]):
     return
 
 def casting():
-    final_lenght = 0
-    x_offset = 0
-    y_offset = 0
+    global final_lenght
     try:
         both_casting()
     except:
@@ -29,10 +34,14 @@ def casting():
     return None
 
 def both_casting():
+    global final_lenght
+    #change offset
     while get_horizontal_distance() > get_vertical_distance():
         vertical_search()
+        final_lenght = get_vertical_distance()
     while get_horizontal_distance() < get_vertical_distance():
         horizonal_search()
+        final_lenght = get_horizontal_distance()
     both_casting()
     return
 
@@ -55,21 +64,30 @@ def horizontal(angle_in: float,y_offset:int):
     hiting = math_import.tan(deg_2_rad(new_angle))*y_offset
     return hiting
 
-def hit_hit_stuff(orientation: int, position: float = []):
+def hit_hit_stuff(orientation: int, position_in: float = []):
+    new_x_position = 0
+    new_y_position = 0
     match orientation:
         case 0:
-            print()
             #vertical +1
+            new_x_position = position_in[0]+1
+            new_y_position = position_in[1]
         case 1:
-            print()
             #horizontal +1
+            new_x_position = position_in[0]
+            new_y_position = position_in[1]+1
         case 2:
-            print()
             #vertical -1
+            new_x_position = position_in[0]-1
+            new_y_position = position_in[1]
         case 3:
             print()
             #horizontal -1
-    return
+            new_x_position = position_in[0]
+            new_y_position = position_in[1]-1
+    if map_search[new_x_position][new_y_position] != "0" and map_search[new_x_position][new_y_position] != "7":
+        return True
+    return False
 
 def rad_2_deg(rad:float):
     return (rad)*(180/math_import.pi)
@@ -99,6 +117,10 @@ def get_horizontal_distance():
     horizontal()
     return
 
+######
+#TODO 
+#change offet some how
+#manage shit
 ######
 
 def output_just_cuz(map_in: str = [[],[]]):
