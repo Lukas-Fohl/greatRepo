@@ -1,6 +1,7 @@
 from designe import map as map_import
 from output import ray_cast as ray_cast_import
 from scene import scenemanager as scene_manager_import
+from output import screen_renderer as screen_renderer_import
 import time as time_import
 import math as math_import
 import platform
@@ -32,10 +33,10 @@ def set_up(custom):
 
 def output_manager(custom):
     degrees_per_ray = fov/ray_amount
-    #ray_cast_import.raycasting(render_distacne,35,map_import.get_current_map())
+    view_offset = (180-fov)/2
     for turning in range(ray_amount):
         ray_cast_import.raycasting(render_distacne,(turning*degrees_per_ray),map_import.get_current_map())
-    #run game
+    screen_renderer_import.renderer(ray_cast_import.final_view)
     print("[✅] \t\t\t frame")
     exit()
     return

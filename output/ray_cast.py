@@ -3,7 +3,7 @@ from output import output as output_import
 from designe import map as map_import
 import math as math_import
 
-final_view: int = [0]
+final_view = [0]
 cam_pos = [0,0]
 degrees_ = 0
 map_search = [[],[]]
@@ -20,8 +20,11 @@ def raycasting(render_distacne_in: int,degrees_in: int,map_in: str = [[],[]]):
     degrees_ = degrees_in
     if output_import.cam_eq_player == True:
         cam_pos = map_import.get_current_player_position()
-    casting()
-    screen_render_import.renderer(final_view)
+    global x_offset
+    global y_offset
+    x_offset = 1
+    y_offset = 1
+    final_view.append(casting()) 
     return
 
 def casting():
@@ -29,21 +32,25 @@ def casting():
     try:
         both_casting()
     except:
-        #print(final_lenght)
+        print(final_lenght)
         return final_lenght
     return None
 
 def both_casting():
     global final_lenght
+    global x_offset
+    global y_offset
     #change offset
     while get_horizontal_distance() > get_vertical_distance():
         #vertical_search()
         final_lenght = get_vertical_distance()
-        x_offset += 1
+        x_offset = x_offset + 1
+        hit_hit_stuff(orientation(degrees_),[x_offset,y_offset])
     while get_horizontal_distance() < get_vertical_distance():
         #horizonal_search()
         final_lenght = get_horizontal_distance()
-        y_offset += 1
+        y_offset = y_offset + 1
+        hit_hit_stuff(orientation(degrees_),[x_offset,y_offset])
     both_casting()
     return
 
@@ -58,7 +65,7 @@ def horizonal_search():
     return
 
 def vertical(angle_in: float):
-    hiting =  math_import.tan(deg_2_rad(angle_in))*x_offset
+    hiting = math_import.tan(deg_2_rad(angle_in))*x_offset
     return hiting
 
 def horizontal(angle_in: float):
@@ -130,4 +137,9 @@ def output_just_cuz(map_in: str = [[],[]]):
         print()
         for x in y:
             print(x*2,end="")
+    return
+
+def output_just_cuz2():
+    for y in range(len(final_view)):
+        print(final_view[y])
     return
