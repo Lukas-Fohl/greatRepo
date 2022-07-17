@@ -1,4 +1,3 @@
-from typing import final
 from output import screen_renderer as screen_render_import
 from output import output as output_import
 from designe import map as map_import
@@ -9,8 +8,8 @@ cam_pos = [0,0]
 degrees_ = 0
 map_search = [[],[]]
 final_lenght = 0
-x_offset = 0
-y_offset = 0
+x_offset = 1
+y_offset = 1
 
 def raycasting(render_distacne_in: int,degrees_in: int,map_in: str = [[],[]]):
     #do the fun stuff
@@ -30,6 +29,7 @@ def casting():
     try:
         both_casting()
     except:
+        #print(final_lenght)
         return final_lenght
     return None
 
@@ -37,11 +37,13 @@ def both_casting():
     global final_lenght
     #change offset
     while get_horizontal_distance() > get_vertical_distance():
-        vertical_search()
+        #vertical_search()
         final_lenght = get_vertical_distance()
+        x_offset += 1
     while get_horizontal_distance() < get_vertical_distance():
-        horizonal_search()
+        #horizonal_search()
         final_lenght = get_horizontal_distance()
+        y_offset += 1
     both_casting()
     return
 
@@ -55,11 +57,11 @@ def horizonal_search():
     get_horizontal_distance()
     return
 
-def vertical(angle_in: float,x_offset:int):
+def vertical(angle_in: float):
     hiting =  math_import.tan(deg_2_rad(angle_in))*x_offset
     return hiting
 
-def horizontal(angle_in: float,y_offset:int):
+def horizontal(angle_in: float):
     new_angle = abs(90-angle_in)
     hiting = math_import.tan(deg_2_rad(new_angle))*y_offset
     return hiting
@@ -81,7 +83,6 @@ def hit_hit_stuff(orientation: int, position_in: float = []):
             new_x_position = position_in[0]-1
             new_y_position = position_in[1]
         case 3:
-            print()
             #horizontal -1
             new_x_position = position_in[0]
             new_y_position = position_in[1]-1
@@ -110,16 +111,17 @@ def orientation(angle: int):
     return choice
 
 def get_vertical_distance():
-    vertical()
-    return
+    resu = math_import.sqrt(x_offset**2+vertical(degrees_)**2)
+    return resu 
 
 def get_horizontal_distance():
-    horizontal()
-    return
+    resu = math_import.sqrt(y_offset**2+horizontal(degrees_)**2)
+    return resu
 
 ######
 #TODO 
 #change offet some how
+#manage final length
 #manage shit
 ######
 
