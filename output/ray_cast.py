@@ -45,12 +45,14 @@ def both_casting():
         #vertical_search()
         final_lenght = get_vertical_distance()
         x_offset = x_offset + 1
-        hit_hit_stuff(orientation(degrees_),[x_offset,y_offset])
+        if hit_hit_stuff(orientation(degrees_),[x_offset,y_offset]) == True:
+            map_search[len(map_search)]
     while get_horizontal_distance() < get_vertical_distance():
         #horizonal_search()
         final_lenght = get_horizontal_distance()
         y_offset = y_offset + 1
-        hit_hit_stuff(orientation(degrees_),[x_offset,y_offset])
+        if hit_hit_stuff(orientation(degrees_),[x_offset,y_offset]) == True:
+            map_search[len(map_search)]
     both_casting()
     return
 
@@ -74,27 +76,53 @@ def horizontal(angle_in: float):
     return hiting
 
 def hit_hit_stuff(orientation: int, position_in: float = []):
+    #TODO --> Change
     new_x_position = 0
     new_y_position = 0
+    if degrees_ >= 0 and degrees_ < 90:
+        new_x_position += x_offset
+        new_y_position +=  y_offset
+    elif degrees_ >=90 and degrees_ <= 180:
+        new_x_position -= x_offset
+        new_y_position +=  y_offset
+    elif degrees_ >= 180 and degrees_ <= 270:
+        new_x_position -= x_offset
+        new_y_position -=  y_offset
+    elif degrees_ >= 270 and degrees_ <= 360:
+        new_x_position += x_offset
+        new_y_position -=  y_offset
+    #TODO --> Change
     match orientation:
         case 0:
             #vertical +1
-            new_x_position = position_in[0]+1
-            new_y_position = position_in[1]
+            new_x_position += position_in[0]+1
+            if degrees_ > 0:
+                new_y_position += position_in[1]
+            else:
+                new_y_position -= position_in[1]
         case 1:
             #horizontal +1
-            new_x_position = position_in[0]
-            new_y_position = position_in[1]+1
+            if degrees_ < 90:
+                new_x_position += position_in[0]
+            else:
+                new_x_position -= position_in[0]
+            new_y_position += position_in[1]+1
         case 2:
             #vertical -1
-            new_x_position = position_in[0]-1
-            new_y_position = position_in[1]
+            new_x_position += position_in[0]-1
+            if degrees_ < 180:
+                new_y_position += position_in[1]
+            else:
+                new_y_position -= position_in[1]
         case 3:
             #horizontal -1
-            new_x_position = position_in[0]
-            new_y_position = position_in[1]-1
-    if map_search[new_x_position][new_y_position] != "0" and map_search[new_x_position][new_y_position] != "7":
+    
+            new_x_position += position_in[0]
+            new_y_position += position_in[1]-1
+    if map_search[new_x_position][new_y_position] != ".":
         return True
+    #if map_search[new_x_position][new_y_position] != "0" and map_search[new_x_position][new_y_position] != "7":
+        #return True
     return False
 
 def rad_2_deg(rad:float):
@@ -104,6 +132,7 @@ def deg_2_rad(deg:float):
     return (deg)*(math_import.pi/180)
 
 def orientation(angle: int):
+    #TODO --> Change
     choice = 0
     if angle >= 0 and angle < 45:
         choice = 0
@@ -130,6 +159,9 @@ def get_horizontal_distance():
 #change offet some how
 #manage final length
 #manage shit
+#   90°
+#0°     180°
+#   270°
 ######
 
 def output_just_cuz(map_in: str = [[],[]]):

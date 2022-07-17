@@ -13,7 +13,6 @@ def renderer(view_from_ray_cast: int = []):
     DISPLAY=pygame.display.set_mode((500,400),0,32)
 
     BLUE=(0,0,255)
-    #shadow?
     DISPLAY.fill((10,10,10))
     pygame.draw.rect(DISPLAY,BLUE,(200,150,100,50))
 
