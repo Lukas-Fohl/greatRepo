@@ -35,7 +35,9 @@ def output_manager(custom):
     degrees_per_ray = fov/ray_amount
     view_offset = (180-fov)/2
     for turning in range(ray_amount):
-        ray_cast_import.raycasting(render_distacne,(turning*degrees_per_ray),map_import.get_current_map())
+        if (turning*degrees_per_ray) == 0 or (turning*degrees_per_ray) % 15 == 0:
+            turning += 0.1
+        ray_cast_import.raycasting(render_distacne,view_offset + (turning*degrees_per_ray),map_import.get_current_map())
     screen_renderer_import.renderer(ray_cast_import.final_view)
     print("[✅] \t\t\t frame")
     exit()
