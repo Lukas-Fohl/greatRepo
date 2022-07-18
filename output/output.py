@@ -33,7 +33,8 @@ def set_up(custom):
 
 def output_manager(custom):
     degrees_per_ray = fov/ray_amount
-    view_offset = (180-fov)/2
+    view_offset = (180-fov)/2 # 35°
+    view_offset = 360 #360
     for turning in range(ray_amount):
         if (turning*degrees_per_ray) == 0 or (turning*degrees_per_ray) % 15 == 0:
             turning += 0.1

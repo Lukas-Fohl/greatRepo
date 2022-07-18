@@ -17,10 +17,11 @@ def renderer(view_from_ray_cast: int = []):
     pygame.init()
     DISPLAY=pygame.display.set_mode((4*game_size[0],4*game_size[1]),0,32)
 
-    BLUE=(0,0,255)
-    DISPLAY.fill((10,10,10))
-    for x in range(len(view_in)):
-        pygame.draw.rect(DISPLAY,BLUE,(((game_size[0]*4)/len(view_in))*x,((game_size[1]*4)/2-(game_size[1]/2)),((game_size[0]*4)/len(view_in))+2,view_in[x]*20))    
+    BLUE=(10,100,10)
+    DISPLAY.fill((132, 236, 250))
+    for y in range(len(view_in)):
+        #mirrored final view
+        pygame.draw.rect(DISPLAY,BLUE,(((game_size[0]*4)/len(view_in))*x,((game_size[1]*4)/2-(game_size[1]/2))-view_in[x]*10,((game_size[0]*4)/len(view_in))+2,view_in[x]*30))    
     #                               pos pos size size
     #pygame.draw.rect(DISPLAY,BLUE,(200,150,100,100))
 
